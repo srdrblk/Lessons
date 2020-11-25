@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "LessonServer";
+
+package greet;
+
+service Lesson {
+
+  rpc AddLesson (LessonModel) returns (LessonModel);
+  rpc GetLessons (GetAllRequest) returns(GetAllReply);
+  rpc DeleteLesson (DeleteLessonRequest) returns(ResponseMessage);
+}
+
+message ResponseMessage {
+	string message = 1;
+}
+
+message DeleteLessonRequest {
+	string LessonId = 1;
+}
+message GetAllRequest{}
+message GetAllReply{
+	repeated LessonModel lessons= 1;
+}
+message LessonModel{
+	string id = 1;
+	string name = 2;
+	int32 credit = 3;
+}
